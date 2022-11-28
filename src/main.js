@@ -1,5 +1,5 @@
 import Vue from 'vue'
-
+import i18n from '@/lang'
 import 'normalize.css/normalize.css' // A modern alternative to CSS resets
 
 import ElementUI from 'element-ui'
@@ -11,6 +11,8 @@ Vue.use(Components)
 
 import mixin from './mixin'
 Vue.mixin(mixin)
+
+require('echarts/lib/component/legend')
 
 import '@/styles/index.scss' // global css
 
@@ -44,7 +46,9 @@ import '@/permission' // permission control
  */
 
 // set ElementUI lang to EN
-Vue.use(ElementUI)
+Vue.use(ElementUI, {
+  i18n: (key, value) => i18n.t(key, value)
+})
 // 如果想要中文版 element-ui，按如下方式声明
 // Vue.use(ElementUI)
 
@@ -54,5 +58,6 @@ new Vue({
   el: '#app',
   router,
   store,
+  i18n,
   render: h => h(App)
 })

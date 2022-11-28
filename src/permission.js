@@ -10,10 +10,15 @@ router.beforeEach(async(to, from, next) => {
       next('/')
     } else {
       if (!store.getters.userId) {
+        // 获取用户的基本信息
         await store.dispatch('user/asyncGetUserInfo')
+        // 从getters 里面取了权限点
         const menus = store.getters.menus
+        // 拿着权限点换取真实的路由
         const newRoutes = await store.dispatch('permission/filterRoutes', menus)
+        // 已经取到用户本身拥有的权限（用router对象身上的 addRoutes 方法将路由合并起来
         router.addRoutes([...newRoutes, { path: '*', redirect: '/404', hidden: true }])
+        // 添加完成后，固定写法
         next(to.path)
       } else {
         next()

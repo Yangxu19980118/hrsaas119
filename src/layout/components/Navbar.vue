@@ -6,12 +6,14 @@
       <span class="breadBtn">体验版</span>
     </div>
     <!-- <breadcrumb class="breadcrumb-container" /> -->
-
     <div class="right-menu">
+      <lang class="right-menu-item" />
+      <screen-full class="right-menu-item" />
+      <theme-picker class="right-menu-item" />
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
           <img v-imgerror="defaultImg" :src="staffPhoto" class="user-avatar">
-          <span class="name">{{ name }}</span>
+          <span class="name">{{ username }}</span>
           <i class="el-icon-caret-bottom" style="color:#fff" />
         </div>
         <el-dropdown-menu slot="dropdown" class="user-dropdown">
@@ -49,7 +51,7 @@ export default {
   computed: {
     ...mapGetters([
       'sidebar',
-      'name',
+      'username',
       'staffPhoto'
     ])
   },
@@ -86,7 +88,6 @@ export default {
       background: rgba(0, 0, 0, .025)
     }
   }
-
   .breadcrumb-container {
     float: left;
   }
@@ -106,7 +107,7 @@ export default {
       height: 100%;
       font-size: 18px;
       color: #5a5e66;
-      vertical-align: text-bottom;
+      vertical-align: middle;
 
       &.hover-effect {
         cursor: pointer;
